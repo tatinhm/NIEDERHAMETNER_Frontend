@@ -1,0 +1,33 @@
+<h1 class="ui dividing header">Bestellungen </h1>
+<!-- Hier würde ich eigentlich die isAdmin Methode aufrufen wenn, sie funktionieren würde -->
+<div class="ui middle aligned selection divided list">
+  <a *ngFor="let order of orders" class="item bs-order-list-item"
+     [order]="order" [routerLink]="order.id">
+  </a>
+
+  <div *ngIf="!orders" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <p *ngIf="orders && !orders.length">
+    Keine Bestellungen!
+  </p>
+
+</div>
+
+<!-- Ansicht für User -->
+<h2 class="ui dividing header">Ihre getätigten Bestellungen</h2>
+
+<div class="ui middle aligned selection divided list">
+  <a *ngFor="let userOrder of userOrders" class="item bs-order-list-item"
+     [order]="userOrder">
+  </a>
+
+  <div *ngIf="!userOrders" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <p *ngIf="userOrders && !userOrders.length">
+    Keine Bestellungen!
+  </p>
+</div>

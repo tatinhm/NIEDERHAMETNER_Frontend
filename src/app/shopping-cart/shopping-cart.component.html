@@ -1,0 +1,24 @@
+<h1 class="ui dividing header">Warenkorb</h1>
+<div class="ui middle aligned selection divided list">
+  <a *ngFor="let book of books" class="item bs-shopping-cart-item"
+     [book]="book" [routerLink]="book.isbn">
+
+  </a>
+
+  <div *ngIf="!books" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <p *ngIf="books && !books.length">
+    Es sind noch keine Bücher im Warenkorb vorhanden!
+  </p>
+
+  <h2 class="ui dividing header">Gesamtpreis</h2>
+  <div><h3>Nettopreis: {{ getNettoPrice() }}€ </h3></div>
+  <div><h3>Bruttopreis: {{ getBruttoPrice() }}€ </h3></div>
+  <button  *ngIf="isLoggedIn()" class="ui small orange button labeled icon" (click)="saveOrder()"><i class="cart arrow down icon"></i>Bücher bestellen</button>
+  <button  *ngIf="!isLoggedIn()" class="ui small orange button labeled icon" [routerLink]="login"><i class="write icon"></i>Einloggen</button>
+  <button class="ui small red button labeled icon" [routerLink]="['./../books']" (click)="deleteShoppingCart()"><i class="remove icon"></i>Warenkorb leeren</button>
+  <button class="ui small blue button labeled icon" [routerLink]="['./../books']">
+    <i class="book icon"></i>Weiterstöbern</button>
+</div>

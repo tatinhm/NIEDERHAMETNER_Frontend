@@ -1,0 +1,8 @@
+<div class="content">
+  <h2>Bestellung NR. {{order.id}}</h2>
+  <div class="header">{{ order.created_at }}</div>
+  <div class="description">Status: {{getState(order.state)}}</div>
+  <div class="description">Kunde: {{ order.user_id }} </div>
+  <div class="extra">Preis {{ order.bruttoPrice }}€</div>
+</div>
+

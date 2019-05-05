@@ -1,0 +1,20 @@
+import {Injectable} from "@angular/core";
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {Observable} from 'rxjs';
+
+@Injectable()
+export class TokenInterceptorService implements HttpInterceptor {
+
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        request = request.clone({
+            setHeaders: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        return next.handle(request);
+    }
+}
+
+
+//Interceptor hängt den aktuellen Token an jeden Request an den Server, damit man authentifiziert bleibt und der Token am REST
+//-Service ankommt

@@ -1,0 +1,24 @@
+<div class="ui {{isLoggedIn()?'six':'four'}} item tabs menu">
+  <a routerLink="home" routerLinkActive="active" class="item"><i class="home icon"></i> Home</a>
+  <a routerLink="books" routerLinkActive="active" class="item"><i class="book icon"></i> Bücher</a>
+  <a routerLink="shoppingCart" routerLinkActive="active" class="item"><i class="cart icon"></i> Warenkorb</a>
+  <a *ngIf="isLoggedIn()" routerLink="orders" routerLinkActive="active" class="item"><i class="table icon"></i> Bestellungen</a>
+  <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item"><i class="edit icon"></i> Administration</a>
+  <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
+</div>
+
+<!-- So wäre mein Aufbau wenn isAdmin() den richtigen Wert zurück geben würde
+<div class="ui {{isAdmin()||isLoggedIn()?'six':'four'}} item tabs menu">
+  <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+  <a routerLink="books" routerLinkActive="active" class="item">Bücher</a>
+  <a routerLink="!isAdmin()" routerLinkActive="active" class="item">Warenkorb</a>
+  <a *ngIf="isAdmin()" routerLink="orders" routerLinkActive="active" class="item">Bestellungen</a>
+  <a *ngIf="isAdmin()" routerLink="admin" routerLinkActive="active" class="item">Administration</a>
+  <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
+</div>
+
+-->
+
+
+<router-outlet></router-outlet>
+

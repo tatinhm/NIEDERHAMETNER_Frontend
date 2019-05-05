@@ -1,0 +1,40 @@
+<div class="content">
+  <h2 class="ui dividing header">Bestellung NR. {{order.id}}</h2>
+  <div class="header">Bestellt am: {{ order.created_at }}</div>
+  <div class="description">Kunde: {{ order.user_id }} </div>
+  <div class="extra">Preis {{ order.bruttoPrice }}€</div>
+</div>
+
+<h3>Aktueller Status: {{ getState(order.state) }}</h3>
+
+
+<form  class="ui form" [formGroup]="orderForm" (ngSubmit)="submitForm()">
+  <label>Satus ändern:  </label>
+  <input type="hidden" name="id">
+  <select class="ui fluid dropdown" type="number" formControlName="state">
+    <option value="0">0 - offen</option>
+    <option value="1">1 - bezahlt</option>
+    <option value="2">2 - versendet</option>
+    <option value="3">3 - storniert</option>
+  </select>
+
+  <label>Anmerkungen: </label>
+  <textarea formControlName="commentAdmin" rows="3"></textarea>
+  <button type="submit" class="ui button" [disabled]="orderForm.invalid"><i class="save outline icon"></i>Speichern</button>
+</form>
+
+
+<h2 class="ui dividing header">Bestellverlauf: </h2>
+<div class="ui middle aligned selection divided list">
+  <a *ngFor="let orderlog of orderlogs" class="item bs-orderlog-item"
+     [orderlog]="orderlog">
+  </a>
+
+  <div *ngIf="!orderlogs" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <p *ngIf="orderlogs && !orderlogs.length">
+    Keine vorangegangenen Änderungen!
+  </p>
+</div>
